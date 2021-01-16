@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div{width: 50px;height: 20px;background-color: pink; position: absolute; right: 0; bottom: 0;}
+    </style>
+</head>
+<body>
+    <div id="div"></div>
+    <div id="dj" onclick="dj()">点击</div>
+    <script>
+        //获取id
+        function byId(id){
+            return document.getElementById(id);
+        }
+
+        //自动显示隐藏div
+        var div = byId("div");
+        var pd = true;
+        var timer = null;
+        //自动运行
+        auto();
+
+        //隐藏/显示
+        function hidden(index){
+            index == 1? div.style.display="block":div.style.display="none";
+            setTimeout(() => {
+                index == 1?pd = false:pd = true;
+            }, 2000);
+        }
+
+        function auto(){
+            timer = setInterval(function(){
+                if(pd){
+                    hidden(1);
+                }else{
+                    hidden(0);
+                }
+            },0)
+        }
+        
+        //点击事件
+        function dj(){
+            var dj =byId("dj");
+            div.style.display="none";
+            clearInterval(timer);
+
+            setTimeout(() => {
+                auto();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
